@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js {{ cache_id }}"></script>
-    <script type="text/javascript" src="static/scripts/1-hbnb.js {{ cache_id }}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/1-hbnb.js') }}"></script>
     <!-- HEAD -->
 
     <meta charset="utf-8">
@@ -11,7 +11,7 @@
 
     <!-- FAVICON -->
 
-    <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.png') }}?{{ cache_id) }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.png') }}?{{ cache_id }}">
 
     <!-- **********************
 	 CSS styles
