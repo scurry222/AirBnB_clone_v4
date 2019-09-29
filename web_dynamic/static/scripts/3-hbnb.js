@@ -10,7 +10,6 @@ $(document).ready(function() {
         } else {
           $('div.amenities h4').text(Object.values(dict).join(', '));
         }
-        console.log(dict);
     });
 });
 $(document).ready(function() {
@@ -71,7 +70,6 @@ $(document).ready(function() {
 </article>
 `;
         $('section.places').append(block);
-        console.log(block);
                 }
         });
     });
