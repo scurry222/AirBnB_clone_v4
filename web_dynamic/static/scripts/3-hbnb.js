@@ -10,8 +10,11 @@ $(document).ready(function() {
         } else {
           $('div.amenities h4').text(Object.values(dict).join(', '));
         }
+        console.log(dict);
     });
-    $.ajax('http://0.0.0.0:5001/api/v1/status').done(function(data) {
+});
+$(document).ready(function() {
+    $.ajax('http://127.0.0.1:5001/api/v1/status').done(function(data) {
         if (data.status === 'OK') {
             $('#api_status').addClass('available');
     
@@ -19,12 +22,14 @@ $(document).ready(function() {
             $('#api_status').removeClass('available');
         }
     });
-    $('.filters button').change(function () {
+});
+$(document).ready(function() {
+    $('.filters button').click(function () {
         $.ajax({type:'POST',
-                url: 'http://0.0.0.0:5001/api/v1/places_search',
+                url: 'http://127.0.0.1:5001/api/v1/places_search',
                 contentType: 'application/json, charset=utf-8',
                 dataType: 'json',
-                data: JSON.stringify({ amenities: Object.keys(amenityIds) })
+                data: JSON.stringify({ amenities: Object.keys(dict) })
                 }).done(function (data) {
                     for(const place of data) {
                         const name = place['name'];
@@ -32,7 +37,7 @@ $(document).ready(function() {
                         const maxGuest = place['max_guest'];
                         const numberRooms = place['number_rooms'];
                         const numberBRooms = place['number_bathrooms'];
-                        const desc = place['description'];
+                        const description = place['description'];
                         let block = `
   <article>
   <div class="title">
@@ -68,5 +73,6 @@ $(document).ready(function() {
         $('section.places').append(block);
         console.log(block);
                 }
+        });
     });
-}};
+});
