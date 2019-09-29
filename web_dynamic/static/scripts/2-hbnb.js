@@ -12,10 +12,11 @@ $(document).ready(function() {
         }
     });
 });
-window.addEventListener('load', function() {
-    $.ajax('http://0.0.0.0:5001/api/v1/status').done(function(data) {
+$(document).ready(function() {
+    $.ajax('http://127.0.0.1:5001/api/v1/status').done(function(data) {
         if (data.status === 'OK') {
             $('#api_status').addClass('available');
+    
         } else {
             $('#api_status').removeClass('available');
         }

@@ -20,10 +20,10 @@ header {
     width: 40px;
     margin-right: 30px;
     margin-top: 15px;
-    background-color: #CCCCCC;
+    background-color: #cccccc;
     border-radius: 50%
 }
 
-#api_status.avaliable {
+#api_status.available {
     background-color: #ff545f;
 }
