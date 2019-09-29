@@ -11,7 +11,7 @@ $(document).ready(function() {
           $('div.amenities h4').text(Object.values(dict).join(', '));
         }
     });
-    $.ajax('http://0.0.0.0:5001/api/v1/status').done(function(data) {
+    $.ajax('http://127.0.0.1:5001/api/v1/status').done(function(data) {
         if (data.status === 'OK') {
             $('#api_status').addClass('available');
     
@@ -21,7 +21,7 @@ $(document).ready(function() {
     });
     $('.filters button').change(function () {
         $.ajax({type:'POST',
-                url: 'http://0.0.0.0:5001/api/v1/places_search',
+                url: 'http://127.0.0.1:5001/api/v1/places_search',
                 contentType: 'application/json, charset=utf-8',
                 dataType: 'json',
                 data: JSON.stringify({ amenities: Object.keys(amenityIds) })
@@ -66,7 +66,8 @@ $(document).ready(function() {
 </article>
 `;
         $('section.places').append(block);
-        console.log(block);
                 }
+        console.log(block);
+        });
     });
-}};
+});
