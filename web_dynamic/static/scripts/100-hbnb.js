@@ -78,11 +78,12 @@ const stateId = {};
 const cityId = {};
 $(document).ready(function() {
     $('.popover .stateCheckBox').change(function () {
+        console.log(Object.keys(stateId).length)
         if (this.checked) {
             stateId[$(this).attr('data-id')] = $(this).attr('data-name');
         } else {
             delete stateId[$(this).attr('data-id')];
-        } if (Object.keys(stateId).length === 0) {
+        } if (Object.keys(stateId).length === 0 && Object.keys(cityId).length === 0){
             $('div.locations h4').html('&nbsp');
         } else {
             $('div.locations h4').text(Object.values(stateId).concat(Object.values(cityId)).join(', '));
@@ -95,7 +96,7 @@ $(document).ready(function() {
             cityId[$(this).attr('data-id')] = $(this).attr('data-name');
         } else {
             delete cityId[$(this).attr('data-id')];
-        } if (Object.keys(cityId).length === 0) {
+        } if (Object.keys(cityId).length === 0 && Object.keys(stateId).length === 0){
             $('div.locations h4').html('&nbsp');
         } else {
           $('div.locations h4').text(Object.values(cityId).concat(Object.values(stateId)).join(', '));
