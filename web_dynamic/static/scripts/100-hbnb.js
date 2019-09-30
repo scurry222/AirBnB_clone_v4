@@ -16,7 +16,7 @@ $(document).ready(function() {
     $.ajax('http://127.0.0.1:5001/api/v1/status').done(function(data) {
         if (data.status === 'OK') {
             $('#api_status').addClass('available');
-
+    
         } else {
             $('#api_status').removeClass('available');
         }
@@ -50,7 +50,7 @@ $(document).ready(function() {
       <i class="fa fa-users fa-3x" aria-hidden="true"></i>
         <br />
       ${maxGuest} Guests
-
+      
       </div>
 <div class="number_rooms">
   <i class="fa fa-bed fa-3x" aria-hidden="true"></i>
@@ -74,16 +74,31 @@ $(document).ready(function() {
         });
     });
 });
-
+const stateId = {};
+const cityId = {};
 $(document).ready(function() {
-    if ($(this).is(':checked')) {
-	div.states($(this).attr('data-id')) = $(this).attr('data-name');
-	$('div.locations h4').text(Object.values(states).join(', '));
-	if ($(this).is(':un-checked')){
-	}
+    $('.popover .stateCheckBox').change(function () {
+        if (this.checked) {
+            stateId[$(this).attr('data-id')] = $(this).attr('data-name');
+        } else {
+            delete stateId[$(this).attr('data-id')];
+        } if (Object.keys(stateId).length === 0) {
+            $('div.locations h4').html('&nbsp');
+        } else {
+            $('div.locations h4').text(Object.values(stateId).concat(Object.values(cityId)).join(', '));
+        }
+    });
 });
-
 $(document).ready(function() {
-79    if ($(this).is(':checked')) {
-80        div.cities($(this).attr('data-id')) = $(this).attr('data-name');
-81        $('div.locations h4').text(Object.values(cities).join(', '));
+    $('.popover .cityCheckBox').change(function () {
+        if (this.checked) {
+            cityId[$(this).attr('data-id')] = $(this).attr('data-name');
+        } else {
+            delete cityId[$(this).attr('data-id')];
+        } if (Object.keys(cityId).length === 0) {
+            $('div.locations h4').html('&nbsp');
+        } else {
+          $('div.locations h4').text(Object.values(cityId).concat(Object.values(stateId)).join(', '));
+        }
+    });
+});
