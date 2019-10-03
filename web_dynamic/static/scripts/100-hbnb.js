@@ -50,7 +50,7 @@ $(document).ready(function() {
       <i class="fa fa-users fa-3x" aria-hidden="true"></i>
         <br />
       ${maxGuest} Guests
-      
+
       </div>
 <div class="number_rooms">
   <i class="fa fa-bed fa-3x" aria-hidden="true"></i>
@@ -69,7 +69,7 @@ $(document).ready(function() {
       </div>
 </article>
 `;
-        $('section.places').append(block);
+        $('section.places').html(block);
                 }
         });
     });
