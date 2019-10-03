@@ -1,6 +1,6 @@
 const dict = {};
-$(document).ready(function() {
-    $('.popover :checkbox').change(function () {
+window.addEventListener('load', function() {
+    $('.popover :checkbox').click(function () {
         if (this.checked) {
                 dict[$(this).attr('data-id')] = $(this).attr('data-name');
             } else {
@@ -11,8 +11,6 @@ $(document).ready(function() {
           $('div.amenities h4').text(Object.values(dict).join(', '));
         }
     });
-});
-$(document).ready(function() {
     $.ajax('http://127.0.0.1:5001/api/v1/status').done(function(data) {
         if (data.status === 'OK') {
             $('#api_status').addClass('available');
@@ -21,8 +19,6 @@ $(document).ready(function() {
             $('#api_status').removeClass('available');
         }
     });
-});
-$(document).ready(function() {
     $('.filters button').click(function () {
         $.ajax({type:'POST',
                 url: 'http://127.0.0.1:5001/api/v1/places_search',
@@ -30,6 +26,7 @@ $(document).ready(function() {
                 dataType: 'json',
                 data: JSON.stringify({ amenities: Object.keys(dict) })
                 }).done(function (data) {
+                    $('section.places').empty();
                     for(const place of data) {
                         const name = place['name'];
                         const priceByNight = place['price_by_night'];
@@ -69,15 +66,16 @@ $(document).ready(function() {
       </div>
 </article>
 `;
+
         $('section.places').html(block);
                 }
+            }
+
         });
     });
-});
-const stateId = {};
-const cityId = {};
-$(document).ready(function() {
-    $('.popover .stateCheckBox').change(function () {
+    const stateId = {};
+    const cityId = {};
+    $('.popover .stateCheckBox').click(function () {
         console.log(Object.keys(stateId).length)
         if (this.checked) {
             stateId[$(this).attr('data-id')] = $(this).attr('data-name');
@@ -89,9 +87,7 @@ $(document).ready(function() {
             $('div.locations h4').text(Object.values(stateId).concat(Object.values(cityId)).join(', '));
         }
     });
-});
-$(document).ready(function() {
-    $('.popover .cityCheckBox').change(function () {
+    $('.popover .cityCheckBox').click(function () {
         if (this.checked) {
             cityId[$(this).attr('data-id')] = $(this).attr('data-name');
         } else {
