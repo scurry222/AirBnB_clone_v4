@@ -30,6 +30,7 @@ $(document).ready(function() {
                 dataType: 'json',
                 data: JSON.stringify({ amenities: Object.keys(dict) })
                 }).done(function (data) {
+                    const blocks = '';
                     for(const place of data) {
                         const name = place['name'];
                         const priceByNight = place['price_by_night'];
@@ -37,7 +38,7 @@ $(document).ready(function() {
                         const numberRooms = place['number_rooms'];
                         const numberBRooms = place['number_bathrooms'];
                         const description = place['description'];
-                        let block = `
+                        const block = `
   <article>
   <div class="title">
 <h2>${name}</h2>
@@ -69,8 +70,9 @@ $(document).ready(function() {
       </div>
 </article>
 `;
-        $('section.places').append(block);
+        $(blocks).append(block);
                 }
+        $('section.places').html(blocks);
         });
     });
 });
