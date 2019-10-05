@@ -19,14 +19,15 @@ window.addEventListener('load', function() {
             $('#api_status').removeClass('available');
         }
     });
+    $('section.places').hide();
     $('.filters button').click(function () {
+        $('section.places').show();
         $.ajax({type:'POST',
                 url: 'http://127.0.0.1:5001/api/v1/places_search',
                 contentType: 'application/json, charset=utf-8',
                 dataType: 'json',
                 data: JSON.stringify({ amenities: Object.keys(dict) })
                 }).done(function (data) {
-                    $('section.places').empty();
                     for(const place of data) {
                         const name = place['name'];
                         const priceByNight = place['price_by_night'];
@@ -34,10 +35,11 @@ window.addEventListener('load', function() {
                         const numberRooms = place['number_rooms'];
                         const numberBRooms = place['number_bathrooms'];
                         const description = place['description'];
-                        let block = `
+                        const block_list = ''
+                        const block = `
   <article>
   <div class="title">
-<h2>${name}</h2>
+<h2>${place.name}</h2>
         <div class="price_by_night">
       ${priceByNight}
       </div>
@@ -66,8 +68,9 @@ window.addEventListener('load', function() {
       </div>
 </article>
 `;
-            $('section.places').append(block);
+            $(block_list).append(block);
             }
+            $('section-places').append(block_list);
         });
     });
     const stateId = {};
