@@ -28,6 +28,7 @@ window.addEventListener('load', function() {
                 dataType: 'json',
                 data: JSON.stringify({ amenities: Object.keys(dict) })
                 }).done(function (data) {
+                    const block_list = ''
                     for(const place of data) {
                         const name = place['name'];
                         const priceByNight = place['price_by_night'];
@@ -35,7 +36,6 @@ window.addEventListener('load', function() {
                         const numberRooms = place['number_rooms'];
                         const numberBRooms = place['number_bathrooms'];
                         const description = place['description'];
-                        const block_list = ''
                         const block = `
   <article>
   <div class="title">
@@ -68,17 +68,11 @@ window.addEventListener('load', function() {
       </div>
 </article>
 `;
-<<<<<<< HEAD
             $(block_list).append(block);
             }
-            $('section-places').append(block_list);
-=======
-
-        $('section.places').html(block);
+            $('section-places').html(block_list);
                 }
             }
-
->>>>>>> 115e317bd106def665952eb7f7124ef94aeda54e
         });
     });
     const stateId = {};
